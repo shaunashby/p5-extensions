@@ -1,0 +1,7 @@
+Using SWIG to generate wrapper code
+-----------------------------------
+
+$ swig -perl5 -shadow -c++ Finder.i
+
+That's it.
+

@@ -1,0 +1,5 @@
+Revision history for Astro-Source-Finder
+
+0.01    Mon 12 Jul 2010 15:09:37 CEST
+        First version. nearest() function just returns a dummy string.
+
