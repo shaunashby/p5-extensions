@@ -21,7 +21,7 @@ public:
 
   // Public methods:
   char * nearest(double ra, double dec, double radius);
-
+  
 private:
   void _init();
   

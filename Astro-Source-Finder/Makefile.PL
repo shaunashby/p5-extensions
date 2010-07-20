@@ -30,8 +30,12 @@ sub MY::postamble {
 SWIG=$(shell which swig)
 MODULE_NAMESPACE=Astro/Source
 
+blib/$(MODULE_NAMESPACE)/%.pm: %.i %.h
+	@echo ">> Updating $@:"
+	-cp $@ $(DESTINSTALLSITELIB)
+    
 %_wrap.cxx: %.i %.h
-	@echo "Creating glue ($@) from $< using SWIG:"
+	@echo ">> Creating glue ($@) from $< using SWIG:"
 	$(SWIG) -outdir lib/$(MODULE_NAMESPACE) -Wall -perl5 -shadow -c++ $<
 
 MAKE_FRAG
