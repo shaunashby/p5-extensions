@@ -5,10 +5,8 @@ README
 Finder.cpp
 Finder.h
 Finder.i
-Finder_wrap.cxx
 lib/Astro/Source/Finder.pm
 t/00-load.t
 t/01-nearest.t
 test.pl
 notes.txt
-
