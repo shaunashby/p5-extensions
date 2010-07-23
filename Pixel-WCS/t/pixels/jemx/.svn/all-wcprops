@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/isdcvo/svn/!svn/ver/400/trunk/pixelization/pixels/jemx
+END
+projection.fits
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/isdcvo/svn/!svn/ver/400/trunk/pixelization/pixels/jemx/projection.fits
+END
+energy_bands.fits
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/isdcvo/svn/!svn/ver/400/trunk/pixelization/pixels/jemx/energy_bands.fits
+END
