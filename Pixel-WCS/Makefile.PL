@@ -28,15 +28,15 @@ WriteMakefile(
 sub MY::postamble {
     return <<'MAKE_FRAG';
 SWIG=$(shell which swig)
-MODULE_NAMESPACE=Astro/Source
+MODULE_NAMESPACE=Pixel
 
 blib/$(MODULE_NAMESPACE)/%.pm: %.i %.h
-        @echo ">> Updating $@:"
-        -cp $@ $(DESTINSTALLSITELIB)
-    
+	@echo ">> Updating $@:"
+	-cp $@ $(DESTINSTALLSITELIB)
+
 %_wrap.cxx: %.i %.h
-        @echo ">> Creating glue ($@) from $< using SWIG:"
-        $(SWIG) -outdir lib/$(MODULE_NAMESPACE) -Wall -perl5 -shadow -c++ $<
+	@echo "Creating glue ($@) from $< using SWIG:"
+	$(SWIG) -outdir lib/$(MODULE_NAMESPACE) -Wall -perl5 -shadow -c++ $<
 
 MAKE_FRAG
     }
