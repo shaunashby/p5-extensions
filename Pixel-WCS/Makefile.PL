@@ -12,7 +12,7 @@ WriteMakefile(
       : ()),
     PL_FILES            => {},
     CCFLAGS           => '-fno-common -DPERL_DARWIN -no-cpp-precomp -fno-strict-aliasing -pipe',
-    LIBS              => ['-L/osa_sw-9.0-intel/lib -ldal3gen -ldal -lcfitsio'],
+    LIBS              => ['-L/osa_sw-9.0-intel/lib -ldal3gen -ldal -lcfitsio -lwcs'],
     CC                => 'g++',
     LD                => 'g++',
     DEFINE            => '-I../',

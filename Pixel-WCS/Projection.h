@@ -16,7 +16,7 @@
 
 class Projection {
 public:
-  Projection(char *name, double a_min, double a_max, double b_min, double b_max);
+  Projection(std::string name, double a_min, double a_max, double b_min, double b_max);
 
   virtual ~Projection();
 
@@ -25,6 +25,12 @@ public:
   bool inside(double axis_a, double axis_b);
 
   double border_distance(double axis_a, double axis_b);
+
+  inline double amin() const { return m_amin; }
+  inline double amax() const { return m_amax; }
+  
+  inline double bmin() const { return m_bmin; }
+  inline double bmax() const { return m_bmax; }
 
 private:
   std::string m_name;

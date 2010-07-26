@@ -25,7 +25,9 @@ public:
   Projections(const char *basedir, const char* instrument);
   virtual ~Projections();
 
-  const char *coordsystem();
+  char * coordsystem();
+  Projection * find_region(double axis_ra, double axis_dec) const;
+  
   const std::vector<Projection *> * regions() const;
 
 private:

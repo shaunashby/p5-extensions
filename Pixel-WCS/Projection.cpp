@@ -13,7 +13,7 @@
 #include <iostream>
 #include <cmath>
 
-Projection::Projection(char *name, double a_min, double a_max, double b_min, double b_max)
+Projection::Projection(std::string name, double a_min, double a_max, double b_min, double b_max)
   : m_name(name),
     m_amin(a_min),
     m_amax(a_max),

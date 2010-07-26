@@ -12,34 +12,32 @@
 #ifndef WCS_H
 #define WCS_H
 
-#include <string>
-#include <vector>
-
-class Projection;
+class Projections;
 
 class WCS {
 public:
-  WCS(std::string & basedir, std::string & instrument);
-
+  WCS(const char *basedir, const char *instrument);
+  
   virtual ~WCS();
-
-  std::string & basedir() const;
-  std::string & instrument() const;
-
-  std::vector<Projection *> * projections() const;
-
+  
+  const char * basedir() const;
+  const char * instrument() const;
+  
+  Projections * projections() const;
+  void search(double caxis_a, double caxis_b, char *coordsystem);
+  
 private:
-  std::vector<Projection*> *m_projections;
-
-  std::string & m_basedir;
-  std::string & m_instrument;
+  Projections *m_projections;
+  
+  const char *m_basedir;
+  const char *m_instrument;
 
   double m_axis_ra;
   double m_axis_dec;
 
   int m_size_ra;
   int m_size_dec;
-
+  
 };
 
 #endif // WCS_H
