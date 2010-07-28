@@ -15,6 +15,7 @@
 #include "Image.h"
 
 #include <iostream>
+#include <sstream>
 
 extern "C" {
   extern int wcscsys(char *coorsys);
@@ -67,11 +68,17 @@ void WCS::search(double axis_a, double axis_b, char *coords) {
   if (pRegion != 0) {
     std::cout << "[WCS::search]: Found best region " << pRegion->name() << std::endl;
   } else {
-    std::cout << "[WCS::search]: No regioin found. Not enough data." << std::endl;
+    std::cout << "[WCS::search]: No region found. Not enough data." << std::endl;
   }
   
   // Open reference image for the region:
-  std::string path("some_path");
+  std::stringstream p;
+  p << m_basedir << "/pixels/" << m_instrument  << "/" << pRegion->name();
+  p << "/" << pRegion->name() << "_" << m_instrument << ".fits[1]";
+  std::string path = p.str();
+  
+  std::cout << "[WCS::search]: Reading reference image parameters from " << path << std::endl;
+  
   Image * refimage = new Image(path);
 
   delete refimage;

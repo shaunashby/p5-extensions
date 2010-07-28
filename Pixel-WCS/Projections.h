@@ -12,8 +12,6 @@
 #ifndef PROJECTIONS_H
 #define PROJECTIONS_H
 
-#include "dal.h"
-
 #include <vector>
 
 class Projection;
@@ -39,8 +37,6 @@ private:
 
   int   m_verbosity;
   char  m_indexDOL[1024];
-
-  dal_element* m_index;
 
   int m_status;
   long m_numrows;

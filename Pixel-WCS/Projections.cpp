@@ -12,6 +12,8 @@
 #include "Projections.h"
 #include "Projection.h"
 
+#include "dal.h"
+
 #include <iostream>
 
 Projections::Projections(const char *basedir, const char* instrument) {

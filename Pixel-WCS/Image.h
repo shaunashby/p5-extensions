@@ -17,8 +17,8 @@
 // New class declaration:
 class Image {
 public:
-  Image(std::string & path);                      
-  virtual ~Image();                     
+  Image(std::string & path);
+  virtual ~Image();
   
   // Public methods:
   const char * ctype1() const;
@@ -37,14 +37,19 @@ public:
   long equinox() const;
 
   const char * refframe() const;
+
+  const int size_x() const;
+  const int size_y() const;
   
 private:
-  std::string & m_path;
-
+  // Function to read the FITS image file to
+  // obtain values to initialize the object:
+  void _init(std::string & path);
+  
   struct WorldCor *m_wcs;
 
-  int      m_sizex;
-  int      m_sizey;
+  int m_sizex;
+  int m_sizey;
   
   char     *m_refframe;
   char     *m_ctype1;
