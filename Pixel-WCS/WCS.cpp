@@ -14,6 +14,7 @@
 #include "Projection.h"
 #include "Image.h"
 #include "Utilities.h"
+#include "ImageParams.h"
 
 #include <iostream>
 #include <sstream>
@@ -107,24 +108,19 @@ void WCS::search(double axis_a, double axis_b, char *coords, int size_x, int siz
 		    size_y / 2.0 + 0.5,
 		    pixel_size_x, pixel_size_y, x_off, y_off);
 
-  printf("Axis_A=%.6f\n", centre_ra);
-  printf("Axis_B=%.6f\n", centre_dec);
-  printf("Size_A=%d\n", size_x);
-  printf("Size_B=%d\n", size_y);
-  printf("Scale_A=%lf\n", pixel_size_x);
-  printf("Scale_B=%lf\n", pixel_size_y);
-  printf("CoordRefFrame=%s\n", refimage->refframe());
-  printf("CoordEquinox=%d\n",  refimage->equinox());
-  printf("CoordProjection=%s\n",  refimage->ctype1());
-  printf("CoordRefPixel_A=%.1lf\n", refimage->crpix1() - x_off);
-  printf("CoordRefPixel_B=%.1lf\n", refimage->crpix2() - y_off);
-  printf("CoordRefValue_A=%lf\n", refimage->crval1());
-  printf("CoordRefValue_B=%lf\n", refimage->crval2());
-  const double * cd = refimage->cd();
-  printf("CD1_1=%.16lf\n", cd[0]);
-  printf("CD1_2=%.16lf\n", cd[1]);
-  printf("CD2_1=%.16lf\n", cd[2]);
-  printf("CD2_2=%.16lf\n", cd[3]);
+  // Write the parameters, ready to be handed back to the user interface module:
+  ImageParams params(centre_ra, centre_dec, size_x, size_y);
+
+  params.scaleA(pixel_size_x);
+  params.scaleB(pixel_size_y);
+  params.coordrefframe(refimage->refframe());
+  params.coordequinox(refimage->equinox());
+  params.coordprojection(refimage->ctype1());
+  params.coordrefpixelA(refimage->crpix1() - x_off);
+  params.coordrefpixelB(refimage->crpix2() - y_off);
+  params.coordrefvalueA(refimage->crval1());
+  params.coordrefvalueB(refimage->crval2());
+  params.cd(refimage->cd());
   
   delete refimage;
 }

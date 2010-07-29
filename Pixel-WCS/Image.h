@@ -23,25 +23,25 @@ public:
   virtual ~Image();
   
   // Public methods:
-  const char * ctype1() const;
-  const char * ctype2() const;
+  char * ctype1();
+  char * ctype2();
 
-  double crval1() const;
-  double crval2() const;
+  double crval1();
+  double crval2();
 
-  double crpix1() const;
-  double crpix2() const;
+  double crpix1();
+  double crpix2();
 
-  const double * cd() const;
+  double * cd();
 
-  double lambda() const;
+  double lambda();
+  
+  long equinox();
 
-  long equinox() const;
+  char * refframe();
 
-  const char * refframe() const;
-
-  const int size_x() const;
-  const int size_y() const;
+  int size_x();
+  int size_y();
 
   struct WorldCoor* wcs() const;
 
