@@ -24,7 +24,7 @@ public:
   const char * instrument() const;
   
   Projections * projections() const;
-  void search(double caxis_a, double caxis_b, char *coordsystem);
+  void search(double caxis_a, double caxis_b, char *coordsystem, int size_x=20, int size_y=20);
   
 private:
   Projections *m_projections;
@@ -35,8 +35,8 @@ private:
   double m_axis_ra;
   double m_axis_dec;
 
-  int m_size_ra;
-  int m_size_dec;
+  int m_size_x;
+  int m_size_y;
   
 };
 

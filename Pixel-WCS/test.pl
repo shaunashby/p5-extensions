@@ -28,3 +28,27 @@ $wcs->search(83.6332, 22.0145, "FK5");
 #  ra = 299.5903
 #  dec = 35.2016
 $wcs->search(299.5903, 35.2016, "FK5");
+
+
+$wcs->search(288.778680, 10.926354, "FK5", 20, 20);
+
+__DATA__
+
+#     "Axis_A=288.778680",
+#     "Axis_B=10.926354",
+#     "Size_A=20",
+#     "Size_B=20",
+#     "Scale_A=0.070407",
+#     "Scale_B=0.070407",
+#     "CoordRefFrame=",
+#     "CoordEquinox=2000",
+#     "CoordProjection=STG",
+#     "CoordRefPixel_A=-561.5",
+#     "CoordRefPixel_B=13.5",
+#     "CoordRefValue_A=90.000000",
+#     "CoordRefValue_B=0.000000",
+#     "CD1_1=-0.0822862539155913",
+#     "CD1_2=0.0000000000000000",
+#     "CD2_1=0.0000000000000000",
+#     "CD2_2=0.0822862539155913"
+    
