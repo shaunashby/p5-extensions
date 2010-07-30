@@ -271,6 +271,50 @@ sub ACQUIRE {
 }
 
 
+############# Class : Pixel::WCS::RotationMatrixVector ##############
+
+package Pixel::WCS::RotationMatrixVector;
+use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
+@ISA = qw( Pixel::WCS );
+%OWNER = ();
+%ITERATORS = ();
+sub new {
+    my $pkg = shift;
+    my $self = Pixel::WCSc::new_RotationMatrixVector(@_);
+    bless $self, $pkg if defined($self);
+}
+
+*size = *Pixel::WCSc::RotationMatrixVector_size;
+*empty = *Pixel::WCSc::RotationMatrixVector_empty;
+*clear = *Pixel::WCSc::RotationMatrixVector_clear;
+*push = *Pixel::WCSc::RotationMatrixVector_push;
+*pop = *Pixel::WCSc::RotationMatrixVector_pop;
+*get = *Pixel::WCSc::RotationMatrixVector_get;
+*set = *Pixel::WCSc::RotationMatrixVector_set;
+sub DESTROY {
+    return unless $_[0]->isa('HASH');
+    my $self = tied(%{$_[0]});
+    return unless defined $self;
+    delete $ITERATORS{$self};
+    if (exists $OWNER{$self}) {
+        Pixel::WCSc::delete_RotationMatrixVector($self);
+        delete $OWNER{$self};
+    }
+}
+
+sub DISOWN {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    delete $OWNER{$ptr};
+}
+
+sub ACQUIRE {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    $OWNER{$ptr} = 1;
+}
+
+
 # ------- VARIABLE STUBS --------
 
 package Pixel::WCS;

@@ -15,3 +15,4 @@
 %include "ImageParams.h"
 
 %template(projectionVector) std::vector<Projection*>;
+%template(RotationMatrixVector) std::vector<double>;
