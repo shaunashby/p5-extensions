@@ -11,6 +11,7 @@
 //--------------------------------------------------------------------
 
 #include "ImageParams.h"
+#include <ostream>
 
 ImageParams::ImageParams(double ra, double dec, double size_x, double size_y)
   : m_ra(ra), m_dec(dec), m_size_x(size_x), m_size_y(size_y)
@@ -113,4 +114,28 @@ void ImageParams::cd(const double * cd) {
 
 const double * ImageParams::cd() const {
   return m_cd;
+}
+
+std::ostream & operator<< (std::ostream & os, const ImageParams & img) {
+  os << "Axis_A="          << img.ra()              << std::endl;
+  os << "Axis_B="	   << img.dec()             << std::endl;
+  os << "Size_A="  	   << img.size_x()          << std::endl;
+  os << "Size_B="	   << img.size_y()          << std::endl;
+  os << "Scale_A="	   << img.scaleA()          << std::endl;
+  os << "Scale_B="	   << img.scaleB()          << std::endl;
+  os << "CoordRefFrame="   << img.coordrefframe()   << std::endl;
+  os << "CoordEquinox="	   << img.coordequinox()    << std::endl;
+  os << "CoordProjection=" << img.coordprojection() << std::endl;
+  os << "CoordRefPixel_A=" << img.coordrefpixelA()  << std::endl;
+  os << "CoordRefPixel_B=" << img.coordrefpixelB()  << std::endl;
+  os << "CoordRefValue_A=" << img.coordrefvalueA()  << std::endl;
+  os << "CoordRefValue_B=" << img.coordrefvalueB()  << std::endl;
+  
+  const double * cd = img.cd();
+  os << "CD1_1=" << cd[0] << std::endl;
+  os << "CD1_2=" << cd[1] << std::endl;
+  os << "CD2_1=" << cd[2] << std::endl;
+  os << "CD2_2=" << cd[3] << std::endl;
+
+  return os;
 }

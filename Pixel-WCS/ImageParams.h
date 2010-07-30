@@ -82,6 +82,6 @@ private:
 };
 
 // Operators:
-std::ostream & operator<< (std::ostream & O, const ImageParams & i);
+std::ostream & operator<< (std::ostream & os, const ImageParams & img);
 
 #endif // IMAGEPARAMS_H

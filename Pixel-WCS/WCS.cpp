@@ -121,6 +121,8 @@ void WCS::search(double axis_a, double axis_b, char *coords, int size_x, int siz
   params.coordrefvalueA(refimage->crval1());
   params.coordrefvalueB(refimage->crval2());
   params.cd(refimage->cd());
+
+  std::cout << params << std::endl;
   
   delete refimage;
 }
