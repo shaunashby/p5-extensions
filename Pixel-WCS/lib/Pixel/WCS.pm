@@ -78,6 +78,7 @@ sub DESTROY {
 *instrument = *Pixel::WCSc::WCS_instrument;
 *projections = *Pixel::WCSc::WCS_projections;
 *search = *Pixel::WCSc::WCS_search;
+*params = *Pixel::WCSc::WCS_params;
 sub DISOWN {
     my $self = shift;
     my $ptr = tied(%$self);
@@ -162,6 +163,57 @@ sub DESTROY {
 *amax = *Pixel::WCSc::Projection_amax;
 *bmin = *Pixel::WCSc::Projection_bmin;
 *bmax = *Pixel::WCSc::Projection_bmax;
+sub DISOWN {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    delete $OWNER{$ptr};
+}
+
+sub ACQUIRE {
+    my $self = shift;
+    my $ptr = tied(%$self);
+    $OWNER{$ptr} = 1;
+}
+
+
+############# Class : Pixel::WCS::ImageParams ##############
+
+package Pixel::WCS::ImageParams;
+use vars qw(@ISA %OWNER %ITERATORS %BLESSEDMEMBERS);
+@ISA = qw( Pixel::WCS );
+%OWNER = ();
+%ITERATORS = ();
+sub new {
+    my $pkg = shift;
+    my $self = Pixel::WCSc::new_ImageParams(@_);
+    bless $self, $pkg if defined($self);
+}
+
+sub DESTROY {
+    return unless $_[0]->isa('HASH');
+    my $self = tied(%{$_[0]});
+    return unless defined $self;
+    delete $ITERATORS{$self};
+    if (exists $OWNER{$self}) {
+        Pixel::WCSc::delete_ImageParams($self);
+        delete $OWNER{$self};
+    }
+}
+
+*ra = *Pixel::WCSc::ImageParams_ra;
+*dec = *Pixel::WCSc::ImageParams_dec;
+*size_x = *Pixel::WCSc::ImageParams_size_x;
+*size_y = *Pixel::WCSc::ImageParams_size_y;
+*scaleA = *Pixel::WCSc::ImageParams_scaleA;
+*scaleB = *Pixel::WCSc::ImageParams_scaleB;
+*coordrefframe = *Pixel::WCSc::ImageParams_coordrefframe;
+*coordequinox = *Pixel::WCSc::ImageParams_coordequinox;
+*coordprojection = *Pixel::WCSc::ImageParams_coordprojection;
+*coordrefpixelA = *Pixel::WCSc::ImageParams_coordrefpixelA;
+*coordrefpixelB = *Pixel::WCSc::ImageParams_coordrefpixelB;
+*coordrefvalueA = *Pixel::WCSc::ImageParams_coordrefvalueA;
+*coordrefvalueB = *Pixel::WCSc::ImageParams_coordrefvalueB;
+*cd = *Pixel::WCSc::ImageParams_cd;
 sub DISOWN {
     my $self = shift;
     my $ptr = tied(%$self);

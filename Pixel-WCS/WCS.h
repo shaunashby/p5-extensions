@@ -13,6 +13,7 @@
 #define WCS_H
 
 class Projections;
+class ImageParams;
 
 class WCS {
 public:
@@ -25,9 +26,11 @@ public:
   
   Projections * projections() const;
   void search(double caxis_a, double caxis_b, char *coordsystem, int size_x=20, int size_y=20);
-  
+  ImageParams *params() const;
+
 private:
   Projections *m_projections;
+  ImageParams *m_image_params;
   
   const char *m_basedir;
   const char *m_instrument;

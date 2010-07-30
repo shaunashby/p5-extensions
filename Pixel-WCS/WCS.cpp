@@ -33,16 +33,18 @@ WCS::WCS(const char * basedir, const char * instrument){
   m_axis_dec = 0.;
   m_size_x = 0;
   m_size_y = 0;
+  m_image_params = 0;
 }
 
 WCS::~WCS() {
   delete m_projections;
+  delete m_image_params;
 }
 
 void WCS::search(double axis_a, double axis_b, char *coords, int size_x, int size_y) {
   // Coord system according to the projection file:
   char *fileCoords = m_projections->coordsystem();
-
+  
   // Use external WCS library function for the conversion. Returns an int
   // representing the identifier of the coordinate system:
   int fileCoordsID = ::wcscsys(fileCoords);
@@ -107,22 +109,22 @@ void WCS::search(double axis_a, double axis_b, char *coords, int size_x, int siz
 		    size_x / 2.0 + 0.5,
 		    size_y / 2.0 + 0.5,
 		    pixel_size_x, pixel_size_y, x_off, y_off);
-
+  
   // Write the parameters, ready to be handed back to the user interface module:
-  ImageParams params(centre_ra, centre_dec, size_x, size_y);
+  m_image_params = new ImageParams(centre_ra, centre_dec, size_x, size_y);
+  
+  m_image_params->scaleA(pixel_size_x);
+  m_image_params->scaleB(pixel_size_y);
+  m_image_params->coordrefframe(refimage->refframe());
+  m_image_params->coordequinox(refimage->equinox());
+  m_image_params->coordprojection(refimage->ctype1());
+  m_image_params->coordrefpixelA(refimage->crpix1() - x_off);
+  m_image_params->coordrefpixelB(refimage->crpix2() - y_off);
+  m_image_params->coordrefvalueA(refimage->crval1());
+  m_image_params->coordrefvalueB(refimage->crval2());
+  m_image_params->cd(refimage->cd());
 
-  params.scaleA(pixel_size_x);
-  params.scaleB(pixel_size_y);
-  params.coordrefframe(refimage->refframe());
-  params.coordequinox(refimage->equinox());
-  params.coordprojection(refimage->ctype1());
-  params.coordrefpixelA(refimage->crpix1() - x_off);
-  params.coordrefpixelB(refimage->crpix2() - y_off);
-  params.coordrefvalueA(refimage->crval1());
-  params.coordrefvalueB(refimage->crval2());
-  params.cd(refimage->cd());
-
-  std::cout << params << std::endl;
+  std::cout << *m_image_params << std::endl;
   
   delete refimage;
 }
@@ -137,4 +139,8 @@ const char * WCS::instrument() const {
 
 Projections * WCS::projections() const {
   return m_projections;
+}
+
+ImageParams * WCS::params() const {
+  return m_image_params;
 }
