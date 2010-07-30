@@ -22,15 +22,23 @@ my $wcs = Pixel::WCS::WCS->new($basedir, $instrument);
 # Crab:
 #  ra 83.6332
 #  dec 22.0145
-$wcs->search(83.6332, 22.0145, "FK5");
+# $wcs->search(83.6332, 22.0145, "FK5");
 
 # Cyg X-1:
 #  ra = 299.5903
 #  dec = 35.2016
-$wcs->search(299.5903, 35.2016, "FK5");
+#$wcs->search(299.5903, 35.2016, "FK5");
 
 
 $wcs->search(288.778680, 10.926354, "FK5", 20, 20);
+
+my $params = $wcs->params();
+
+print $params->coordrefframe(),"\n";
+print $params->coordrefpixelA(),"\n";
+
+#my @rot = $params->cd();
+#print $$rot[0],"\n";
 
 __DATA__
 
