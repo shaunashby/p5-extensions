@@ -13,6 +13,7 @@
 #define IMAGEPARAMS_H       
 
 #include <iosfwd>
+#include <vector>
 
 // ImageParams class: Parameters for creating image products
 class ImageParams {
@@ -55,7 +56,7 @@ public:
   const double coordrefvalueB() const;
 
   void cd(const double *cd);
-  const double * cd() const;
+  const std::vector<double> *cd() const;
 
 private:
   const double m_ra;
@@ -77,7 +78,7 @@ private:
   double m_coordrefval_a;
   double m_coordrefval_b;
 
-  const double * m_cd;
+  std::vector<double> *m_cd;
   
 };
 

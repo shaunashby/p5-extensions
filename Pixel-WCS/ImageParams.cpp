@@ -14,7 +14,7 @@
 #include <ostream>
 
 ImageParams::ImageParams(double ra, double dec, double size_x, double size_y)
-  : m_ra(ra), m_dec(dec), m_size_x(size_x), m_size_y(size_y)
+  : m_ra(ra), m_dec(dec), m_size_x(size_x), m_size_y(size_y), m_cd(new std::vector<double>[4])
 {}
 
 ImageParams::~ImageParams()
@@ -109,10 +109,12 @@ const double ImageParams::coordrefvalueB() const {
 }
 
 void ImageParams::cd(const double * cd) {
-  m_cd = cd;
+  for (int i = 0; i < 4; i++) {
+    m_cd->push_back(cd[i]);
+  }
 }
 
-const double * ImageParams::cd() const {
+const std::vector<double> *ImageParams::cd() const {
   return m_cd;
 }
 
@@ -131,11 +133,12 @@ std::ostream & operator<< (std::ostream & os, const ImageParams & img) {
   os << "CoordRefValue_A=" << img.coordrefvalueA()  << std::endl;
   os << "CoordRefValue_B=" << img.coordrefvalueB()  << std::endl;
   
-  const double * cd = img.cd();
-  os << "CD1_1=" << cd[0] << std::endl;
-  os << "CD1_2=" << cd[1] << std::endl;
-  os << "CD2_1=" << cd[2] << std::endl;
-  os << "CD2_2=" << cd[3] << std::endl;
+  const std::vector<double> *rot_matrix = img.cd();
 
+  os << "CD1_1=" << rot_matrix->at(0) << std::endl;
+  os << "CD1_2=" << rot_matrix->at(1) << std::endl;
+  os << "CD2_1=" << rot_matrix->at(2) << std::endl;
+  os << "CD2_2=" << rot_matrix->at(3) << std::endl;
+  
   return os;
 }
