@@ -33,13 +33,13 @@ public:
   const double scaleA() const;
   const double scaleB() const;
 
-  void         coordrefframe(char * ref);
+  void         coordrefframe(const char * ref);
   const char * coordrefframe() const;
   
   void coordequinox(long eq);
   const long coordequinox() const;
   
-  void         coordprojection(char * proj);
+  void         coordprojection(const char * proj);
   const char * coordprojection() const;
 
   void   coordrefpixelA(double crpix1);
@@ -54,7 +54,7 @@ public:
   void   coordrefvalueB(double crval2);
   const double coordrefvalueB() const;
 
-  void cd(double *cd);
+  void cd(const double *cd);
   const double * cd() const;
 
 private:
@@ -66,8 +66,8 @@ private:
   double  m_scale_a;
   double  m_scale_b;
 
-  char * m_refframe;
-  char * m_coord_proj;
+  const char * m_refframe;
+  const char * m_coord_proj;
 
   long  m_equinox;
   
@@ -77,7 +77,7 @@ private:
   double m_coordrefval_a;
   double m_coordrefval_b;
 
-  double * m_cd;
+  const double * m_cd;
   
 };
 

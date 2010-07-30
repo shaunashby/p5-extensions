@@ -51,7 +51,7 @@ const double ImageParams::scaleB() const {
   return m_scale_b;
 }
 
-void ImageParams::coordrefframe(char * ref) {
+void ImageParams::coordrefframe(const char * ref) {
   m_refframe = ref;
 }
 
@@ -67,7 +67,7 @@ const long ImageParams::coordequinox() const {
   return m_equinox;
 }
   
-void ImageParams::coordprojection(char * proj) {
+void ImageParams::coordprojection(const char * proj) {
   m_coord_proj = proj;
 }
 
@@ -107,7 +107,7 @@ const double ImageParams::coordrefvalueB() const {
   return m_coordrefval_b;
 }
 
-void ImageParams::cd(double * cd) {
+void ImageParams::cd(const double * cd) {
   m_cd = cd;
 }
 

@@ -37,53 +37,53 @@ Image::~Image(){
     ::wcsfree(m_wcs);
 }
 
-char * Image::ctype1() {
+const char * Image::ctype1() const {
   // Remove first 5 characters:
   return m_ctype1+5;
 }
 
-char * Image::ctype2() {
+const char * Image::ctype2() const {
   // Remove first 5 characters:
   return m_ctype2+5;
 }
 
-double Image::crpix1() {
+const double Image::crpix1() const {
   return m_crpix1;
 }
 
-double Image::crpix2() {
+const double Image::crpix2() const {
   return m_crpix2;
 }
 
-double Image::crval1() {
+const double Image::crval1() const {
   return m_crval1;
 }
 
-double Image::crval2() {
+const double Image::crval2() const {
   return m_crval2;
 }
 
-double * Image::cd() {
+const double * Image::cd() const {
   return m_cd;
 }
 
-double Image::lambda() {
+const double Image::lambda() const {
   return m_lambda;
 }
 
-long Image::equinox() {
+const long Image::equinox() const {
   return m_equinox;
 }
 
-char * Image::refframe() {
+const char * Image::refframe() const {
   return m_refframe;
 }
 
-int Image::size_x() {
+const int Image::size_x() const {
   return m_sizex;
 }
 
-int Image::size_y() {
+const int Image::size_y() const {
   return m_sizey;
 }
 
