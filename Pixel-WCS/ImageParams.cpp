@@ -119,26 +119,26 @@ const std::vector<double> *ImageParams::cd() const {
 }
 
 std::ostream & operator<< (std::ostream & os, const ImageParams & img) {
-  os << "Axis_A="          << img.ra()              << std::endl;
-  os << "Axis_B="	   << img.dec()             << std::endl;
-  os << "Size_A="  	   << img.size_x()          << std::endl;
-  os << "Size_B="	   << img.size_y()          << std::endl;
-  os << "Scale_A="	   << img.scaleA()          << std::endl;
-  os << "Scale_B="	   << img.scaleB()          << std::endl;
-  os << "CoordRefFrame="   << img.coordrefframe()   << std::endl;
-  os << "CoordEquinox="	   << img.coordequinox()    << std::endl;
-  os << "CoordProjection=" << img.coordprojection() << std::endl;
-  os << "CoordRefPixel_A=" << img.coordrefpixelA()  << std::endl;
-  os << "CoordRefPixel_B=" << img.coordrefpixelB()  << std::endl;
-  os << "CoordRefValue_A=" << img.coordrefvalueA()  << std::endl;
-  os << "CoordRefValue_B=" << img.coordrefvalueB()  << std::endl;
+  os << "[ImageParams]: Axis_A="          << img.ra()              << std::endl;
+  os << "[ImageParams]: Axis_B="	   << img.dec()             << std::endl;
+  os << "[ImageParams]: Size_A="  	   << img.size_x()          << std::endl;
+  os << "[ImageParams]: Size_B="	   << img.size_y()          << std::endl;
+  os << "[ImageParams]: Scale_A="	   << img.scaleA()          << std::endl;
+  os << "[ImageParams]: Scale_B="	   << img.scaleB()          << std::endl;
+  os << "[ImageParams]: CoordRefFrame="   << img.coordrefframe()   << std::endl;
+  os << "[ImageParams]: CoordEquinox="	   << img.coordequinox()    << std::endl;
+  os << "[ImageParams]: CoordProjection=" << img.coordprojection() << std::endl;
+  os << "[ImageParams]: CoordRefPixel_A=" << img.coordrefpixelA()  << std::endl;
+  os << "[ImageParams]: CoordRefPixel_B=" << img.coordrefpixelB()  << std::endl;
+  os << "[ImageParams]: CoordRefValue_A=" << img.coordrefvalueA()  << std::endl;
+  os << "[ImageParams]: CoordRefValue_B=" << img.coordrefvalueB()  << std::endl;
   
   const std::vector<double> *rot_matrix = img.cd();
 
-  os << "CD1_1=" << rot_matrix->at(0) << std::endl;
-  os << "CD1_2=" << rot_matrix->at(1) << std::endl;
-  os << "CD2_1=" << rot_matrix->at(2) << std::endl;
-  os << "CD2_2=" << rot_matrix->at(3) << std::endl;
+  os << "[ImageParams]: CD1_1=" << rot_matrix->at(0) << std::endl;
+  os << "[ImageParams]: CD1_2=" << rot_matrix->at(1) << std::endl;
+  os << "[ImageParams]: CD2_1=" << rot_matrix->at(2) << std::endl;
+  os << "[ImageParams]: CD2_2=" << rot_matrix->at(3) << std::endl;
   
   return os;
 }

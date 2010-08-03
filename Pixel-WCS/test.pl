@@ -10,7 +10,8 @@
 # Copyright: 2010 (C) Shaun ASHBY
 #
 #--------------------------------------------------------------------
-use lib "/tmp/lib/perl5/site_perl/5.8.9/darwin-2level";
+use warnings;
+use strict;
 
 use Pixel::WCS;
 
@@ -29,34 +30,51 @@ my $wcs = Pixel::WCS::WCS->new($basedir, $instrument);
 #  dec = 35.2016
 #$wcs->search(299.5903, 35.2016, "FK5");
 
+my $axis_a =288.778680;
+my $axis_b = 10.926354;
 
-$wcs->search(288.778680, 10.926354, "FK5", 20, 20);
+$wcs->search($axis_a, $axis_b, "FK5", 20, 20);
 
 my $params = $wcs->params();
 
-print $params->coordrefframe(),"\n";
-print $params->coordrefpixelA(),"\n";
+my $crf   = $params->coordrefframe();
+my $ceq   = $params->coordequinox();
+my $copr  = $params->coordprojection();
+my $crpa  = $params->coordrefpixelA();
+my $crpb  = $params->coordrefpixelB();
+my $crva  = $params->coordrefvalueA();
+my $crvb  = $params->coordrefvalueB();
 
-#my @rot = $params->cd();
-#print $$rot[0],"\n";
+# Rotation matrices:
+my $rm    = $params->cd();
 
-__DATA__
+my $cd1_1 = $rm->get(0);
+my $cd1_2 = $rm->get(1);
+my $cd2_1 = $rm->get(2);
+my $cd2_2 = $rm->get(3);
 
-#     "Axis_A=288.778680",
-#     "Axis_B=10.926354",
-#     "Size_A=20",
-#     "Size_B=20",
-#     "Scale_A=0.070407",
-#     "Scale_B=0.070407",
-#     "CoordRefFrame=",
-#     "CoordEquinox=2000",
-#     "CoordProjection=STG",
-#     "CoordRefPixel_A=-561.5",
-#     "CoordRefPixel_B=13.5",
-#     "CoordRefValue_A=90.000000",
-#     "CoordRefValue_B=0.000000",
-#     "CD1_1=-0.0822862539155913",
-#     "CD1_2=0.0000000000000000",
-#     "CD2_1=0.0000000000000000",
-#     "CD2_2=0.0822862539155913"
+my $size_x  = $params->size_x();
+my $size_y  = $params->size_y();
+my $scale_a = $params->scaleA();
+my $scale_b = $params->scaleB();
+
+
+my $out= "Axis_A=".$axis_a."\n";
+$out.="Axis_B=10.926354".$axis_b."\n";
+$out.="Size_A=".$size_x."\n";
+$out.="Size_B=".$size_y."\n";
+$out.="Scale_A=".$scale_a."\n";
+$out.="Scale_B=".$scale_b."\n";
+$out.="CoordRefFrame=".$crf."\n";
+$out.="CoordEquinox=".$ceq."\n";
+$out.="CoordProjection=".$copr."\n";
+$out.="CoordRefPixel_A=".$crpa."\n";
+$out.="CoordRefPixel_B=".$crpb."\n";
+$out.="CoordRefValue_A=".$crva."\n";
+$out.="CoordRefValue_B=".$crvb."\n";
+$out.="CD1_1=".$cd1_1."\n";
+$out.="CD1_2=".$cd1_2."\n";
+$out.="CD2_1=".$cd2_1."\n";
+$out.="CD2_2=".$cd2_2."\n";
     
+print $out,"\n";
