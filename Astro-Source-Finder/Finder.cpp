@@ -12,11 +12,12 @@
 #include <cstdio>
 #include "Finder.h"
 
+#include "dal.h"
+
 Finder::Finder(char* base, char* instrument, int verbosity) {
-  m_base = base;
+  m_basedir = base;
   m_instrument = instrument;
   m_verbosity = verbosity;
-  m_index = 0;
   m_status = 0;
   m_numrows = 0;
   m_strlength = 0;
@@ -37,30 +38,32 @@ Finder::~Finder() {
 
 char * Finder::nearest(double ra, double dec, double radius) {
   char *srcid="";
+  int i;
   // Dump the values we have:
-  for (int i = 0; i < m_numrows; i++) {
-    printf("%04d   %lf\t%lf\t%s\n",i,m_ra[i],m_dec[i],m_srcid[i]);
+  for (i = 0; i < m_numrows; i++) {
+    if (m_verbosity > 0)
+      printf("%04d   %lf\t%lf\t%s\n",i,m_ra[i],m_dec[i],m_srcid[i]);
   }
-
- 
-  return srcid;
+  // FIXME: Eventually return the real source ID. For now, return the last one:
+  return m_srcid[i - 1];
 }
 
 void Finder::_init() {
+  dal_element *m_index = 0;
   sprintf(m_indexDOL, "%s/light_curves/%s/%s_index.fits[1]",
-	  m_base, m_instrument, m_instrument);
+	  m_basedir, m_instrument, m_instrument);
   if (m_verbosity > 0)
     printf("Reading index at %s\n",m_indexDOL);
-
+  
   // Open the file:
   m_status = DALobjectOpen(m_indexDOL, &m_index, m_status);
-
+  
   if (m_status) {
     printf("ERROR: Unable to open file %s",m_indexDOL);
-  } else {    
+  } else {
     
     m_status = DALtableGetNumRows(m_index, &m_numrows, m_status);
-
+    
     if (m_status != 0 || m_numrows == 0) {
       printf("WARN: Index file %s has 0 rows", m_indexDOL);
       DALobjectClose(m_index, DAL_SAVE, 0);
@@ -77,7 +80,7 @@ void Finder::_init() {
     m_ra = new double[m_numrows];
     strcpy(columnName, "RA_OBJ");
     m_status = DALtableGetCol(m_index, columnName, 0, &dataType, NULL, m_ra, m_status);
-    
+
     if (m_status != 0) {
       printf("ERROR: Failed to read column %s", columnName);
     } else {
@@ -90,7 +93,7 @@ void Finder::_init() {
     m_dec = new double[m_numrows];
     strcpy(columnName, "DEC_OBJ");
     m_status = DALtableGetCol(m_index, columnName, 0, &dataType, NULL, m_dec, m_status);
-    
+
     if (m_status != 0) {
       printf("ERROR: Failed to read column %s", columnName);
     } else {

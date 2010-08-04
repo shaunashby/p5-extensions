@@ -1,4 +1,4 @@
-#!perl -T
+#!/opt/local/bin/perl -T
 
 use Test::More tests => 1;
 
