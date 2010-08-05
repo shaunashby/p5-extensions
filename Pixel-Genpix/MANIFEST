@@ -1,0 +1,10 @@
+Changes
+Genpix.cpp
+Genpix.h
+Genpix.i
+lib/Pixel/Generate.pm
+lib/Pixel/Genpix.pm
+Makefile.PL
+MANIFEST
+README
+t/00-load.t
