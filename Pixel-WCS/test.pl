@@ -30,10 +30,10 @@ my $wcs = Pixel::WCS::WCS->new($basedir, $instrument);
 #  dec = 35.2016
 #$wcs->search(299.5903, 35.2016, "FK5");
 
-my $axis_a =288.778680;
-my $axis_b = 10.926354;
+my $in_axis_a =288.778680;
+my $in_axis_b = 10.926354;
 
-$wcs->search($axis_a, $axis_b, "FK5", 20, 20);
+$wcs->search($in_axis_a, $in_axis_b, "FK5", 20, 20);
 
 my $params = $wcs->params();
 
@@ -51,6 +51,8 @@ my $cd1_2 = $params->cd()->get(1);
 my $cd2_1 = $params->cd()->get(2);
 my $cd2_2 = $params->cd()->get(3);
 
+my $axis_a = $params->ra();
+my $axis_b = $params->dec();
 my $size_x  = $params->size_x();
 my $size_y  = $params->size_y();
 my $scale_a = $params->scaleA();
@@ -58,7 +60,7 @@ my $scale_b = $params->scaleB();
 
 
 my $out= "Axis_A=".$axis_a."\n";
-$out.="Axis_B=10.926354".$axis_b."\n";
+$out.="Axis_B=".$axis_b."\n";
 $out.="Size_A=".$size_x."\n";
 $out.="Size_B=".$size_y."\n";
 $out.="Scale_A=".$scale_a."\n";
