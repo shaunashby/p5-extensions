@@ -46,12 +46,10 @@ my $crva  = $params->coordrefvalueA();
 my $crvb  = $params->coordrefvalueB();
 
 # Rotation matrices:
-my $rm    = $params->cd();
-
-my $cd1_1 = $rm->get(0);
-my $cd1_2 = $rm->get(1);
-my $cd2_1 = $rm->get(2);
-my $cd2_2 = $rm->get(3);
+my $cd1_1 = $params->cd()->get(0);
+my $cd1_2 = $params->cd()->get(1);
+my $cd2_1 = $params->cd()->get(2);
+my $cd2_2 = $params->cd()->get(3);
 
 my $size_x  = $params->size_x();
 my $size_y  = $params->size_y();
