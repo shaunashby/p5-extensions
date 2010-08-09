@@ -74,8 +74,10 @@ sub DESTROY {
     }
 }
 
-*readimage = *Pixel::Genpixc::Genpix_readimage;
+*read_reference = *Pixel::Genpixc::Genpix_read_reference;
 *save = *Pixel::Genpixc::Genpix_save;
+*version = *Pixel::Genpixc::Genpix_version;
+*print = *Pixel::Genpixc::Genpix_print;
 sub DISOWN {
     my $self = shift;
     my $ptr = tied(%$self);
@@ -181,4 +183,5 @@ sub ACQUIRE {
 
 package Pixel::Genpix;
 
+*GENPIX_VERSION = *Pixel::Genpixc::GENPIX_VERSION;
 1;
