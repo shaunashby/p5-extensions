@@ -12,18 +12,16 @@
 #ifndef INSTRUMENT_H        
 #define INSTRUMENT_H        
 
-class Instrument {
-public:
-  Instrument();
-  virtual ~Instrument();
-
-  // Public methods:
-  void process(Process & p);
-
-private:
-  Instrument(const Instrument& r);
-  Instrument& operator=(const Instrument& r);
-
-};
+namespace Pix {
+  class Process;
+  
+  class Instrument {
+  public:
+    virtual ~Instrument() {};
+    // Set and get methods for the instrument processing class:
+    virtual void process(Process *p) = 0;
+    const virtual Process * process() const = 0;
+  };
+}
 
 #endif // INSTRUMENT_H        

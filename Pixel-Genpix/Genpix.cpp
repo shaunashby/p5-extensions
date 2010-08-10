@@ -9,19 +9,28 @@
 // Copyright: 2010 (C) Shaun ASHBY
 //
 //--------------------------------------------------------------------
-#include "Genpix.h"
 #include <iostream>
 #include <sstream>
 
+#include "Genpix.h"
+#include "Factory.h"
+#include "Instrument.h"
+
+class Error;
+
 Genpix::Genpix(char *image, char *refimage, double lowL, double highL, double lowB, double highB, int oversample)
-  : m_image(image),
-    m_refimage(refimage),
-    m_lowL(lowL),
-    m_highL(highL),
-    m_lowB(lowB),
-    m_highB(highB),
-    m_oversample(oversample)
-{}
+try : m_image(image),
+	m_refimage(refimage),
+	m_lowL(lowL),
+	m_highL(highL),
+	m_lowB(lowB),
+	m_highB(highB),
+	m_oversample(oversample),m_instrument(0) {
+  // Read reference image:
+  
+  
+  
+	} catch ( ... ) { std::cerr << "Genpix::Genpix: ERROR in member initialization." << std::endl; }
 
 Genpix::~Genpix() throw()
 {}
@@ -30,6 +39,20 @@ void Genpix::read_reference(){
   std::cout << "Reading reference image " << m_refimage << std::endl;
 
 
+
+
+  
+  // Get instrument (eventually from the reference image FITS file:
+  const char * instrument = "ISGRI";
+  m_instrument = Pix::Factory::createInstrument(instrument);
+
+  if (m_instrument == 0) {
+    // Error state: unknown instrument:
+    std::cerr << "ERROR: Unknown instrument " << instrument << std::endl;
+  }
+
+  delete m_instrument;
+  
 }
 
 void Genpix::save(){

@@ -18,7 +18,9 @@
 // Version string:
 #define GENPIX_VERSION "[Pixel::Genpix]: perl extension v0.1, perl v5.8.9, (SFA)"
 
-class Instrument;
+namespace Pix {
+  class Instrument;
+}
 
 // New class declaration:
 class Genpix {
@@ -45,7 +47,7 @@ private:
   
   int m_oversample;
   
-  Instrument * m_instrument;
+  Pix::Instrument * m_instrument;
   
 private:  
   Genpix(const Genpix & r);

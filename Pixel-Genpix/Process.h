@@ -12,14 +12,15 @@
 #ifndef PROCESS_H           
 #define PROCESS_H           
 
-class Process {
-public:
-  virtual ~Process() throw();
-  virtual void initialize() = 0;
-  virtual void run() = 0;
-private:
-  Process(const Process& r);
-  Process & operator=(const Process& r);
-};
-
+namespace Pix {
+  class Process {
+  public:
+    virtual ~Process() {} throw();
+    virtual void initialize() = 0;
+    virtual void run() = 0;
+  private:
+    Process(const Process& r);
+    Process & operator=(const Process& r);
+  };
+}
 #endif // PROCESS_H           
