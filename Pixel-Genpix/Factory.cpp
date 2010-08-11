@@ -4,12 +4,14 @@
 #include "Instrument.h"
 #include "ISGRI.h"
 
+#include <iostream>
+
 //#define ALL_INSTRUMENTS 1
 
 // Factory class to create instrument-specific classes
 namespace Pix {
-  Instrument* Factory::createInstrument(const char * instrument) {
-    if (instrument == "ISGRI") {
+  Instrument* Factory::createInstrument(std::string instrument) {
+    if (instrument == "IBIS") { // Confusing huh?
       return new ISGRI();
 #ifdef ALL_INSTRUMENTS
     } else if (instrument == "JEMX") {

@@ -74,10 +74,8 @@ sub DESTROY {
     }
 }
 
-*read_reference = *Pixel::Genpixc::Genpix_read_reference;
 *save = *Pixel::Genpixc::Genpix_save;
 *version = *Pixel::Genpixc::Genpix_version;
-*print = *Pixel::Genpixc::Genpix_print;
 sub DISOWN {
     my $self = shift;
     my $ptr = tied(%$self);

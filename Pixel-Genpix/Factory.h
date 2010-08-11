@@ -3,12 +3,14 @@
 #ifndef FACTORY_H
 #define FACTORY_H
 
+#include <string>
+
 namespace Pix {
   class Instrument;
 
   class Factory {
   public:
-    static Instrument* createInstrument(const char *instrument);
+    static Instrument* createInstrument(std::string instrument);
   private:
     Factory(); 
   };

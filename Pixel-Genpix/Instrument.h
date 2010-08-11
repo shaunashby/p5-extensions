@@ -14,6 +14,7 @@
 
 namespace Pix {
   class Process;
+  class Image;
   
   class Instrument {
   public:
@@ -21,6 +22,12 @@ namespace Pix {
     // Set and get methods for the instrument processing class:
     virtual void process(Process *p) = 0;
     const virtual Process * process() const = 0;
+    // Set up:
+    virtual void setup(const char *input, const Image & ref, double lowL, double highL, double lowB, double highB, int oversample) = 0;
+    // Processing:
+    virtual void run_loop() = 0;
+    // Writing data to some storage:
+    virtual void write() = 0;
   };
 }
 

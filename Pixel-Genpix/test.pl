@@ -21,11 +21,5 @@ use Pixel::Genpix;
 # [INFO]   outputArea     = pixels/isgri/glactic_center2/0
 # [INFO]   referenceImage = pixels/isgri/glactic_center2/glactic_center2_isgri.fits[1]
 my $img = "./t/data/isgri_sky_ima.fits.gz";
-my $refimg = "./t/data/glactic_center2_isgri.fits.gz";
-
+my $refimg = "./t/data/glactic_center2_isgri.fits.gz[1]";
 my $gpx = Pixel::Genpix::Genpix->new($img, $refimg, 42.5, 137.5, -47.5, 47.5);
-
-print "Integration Test for ",$gpx->version(),"\n";
-
-$gpx->read_reference();
-print $gpx->print(),"\n"; 
