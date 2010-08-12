@@ -128,10 +128,13 @@ namespace Pix {
     m_status = DALattributeGet(image, "CTYPE2", DAL_CHAR, m_ctype2, NULL, NULL, m_status);
     m_status = DALattributeGet(image, "CRVAL1", DAL_DOUBLE, &m_crval1, NULL, NULL, m_status);
     m_status = DALattributeGet(image, "CRVAL2", DAL_DOUBLE, &m_crval2, NULL, NULL, m_status);
+
+    // Only for ISGRI/JEMX so move this to instrument image class:
     m_status = DALattributeGet(image, "CD1_1", DAL_DOUBLE, &m_cd[0], NULL, NULL, m_status);
     m_status = DALattributeGet(image, "CD1_2", DAL_DOUBLE, &m_cd[1], NULL, NULL, m_status);
     m_status = DALattributeGet(image, "CD2_1", DAL_DOUBLE, &m_cd[2], NULL, NULL, m_status);
     m_status = DALattributeGet(image, "CD2_2", DAL_DOUBLE, &m_cd[3], NULL, NULL, m_status);
+
     m_status = DALattributeGet(image, "RADECSYS", DAL_CHAR, m_refframe, NULL, NULL, m_status);
     m_status = DALattributeGet(image, "EQUINOX", DAL_LONG, &m_equinox, NULL, NULL, m_status);
     m_status = DALattributeGet(image, "SIZE1", DAL_LONG, &m_sizex, NULL, NULL, m_status);

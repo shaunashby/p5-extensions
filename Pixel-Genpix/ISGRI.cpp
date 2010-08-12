@@ -101,6 +101,12 @@ namespace Pix {
 	  status = fits_read_key(fileptr,TDOUBLE,(char*)"E_MAX", &emax, NULL, &status);
 	  std::cout << "[ISGRI] setup : --- E_MIN = " << emin << std::endl;
 	  std::cout << "[ISGRI] setup : --- E_MAX = " << emax << std::endl;
+
+
+
+
+
+
 	  
 	}
 	// Store the data:

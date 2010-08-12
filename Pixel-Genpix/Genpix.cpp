@@ -26,7 +26,7 @@ try : m_instrument(0) {
   std::cout << "[Genpix]: Processing for instrument " << refImage.instrument() << " will be run." << std::endl;
   
   m_instrument = Pix::Factory::createInstrument(refImage.instrument());
-  m_instrument->setup(inIMG,refImage, lowL, highL, lowB, highB, oversample);
+  m_instrument->setup(inIMG, refImage, lowL, highL, lowB, highB, oversample);
   
   // Run the processing:
   m_instrument->run_loop();
